@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 
-
 var productsArray = [];
 
 function showProducts(array) {
@@ -18,17 +17,14 @@ function showProducts(array) {
 
         contenido += products.name + '<br>';
         contenido += products.description + '<br>';
-        contenido += 'Costo: ' + products.cost + '<br>';
-        contenido += 'Moneda: ' + products.currency + '<br>';
-        contenido += 'Imagen: ' + products.imgSrc + '<br>';
-        contenido += 'Cantidad de ventas: ' + products.soldcount + '<br>';
-
+        contenido += 'Precio contado: ' + products.currency + " " + products.cost + '<br>';
+        contenido += "<img src=" + products.imgSrc + "> <br>";
         contenido += '<br><hr><br>'
-
 
         document.getElementById("listado").innerHTML = contenido;
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
