@@ -45,3 +45,9 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+if(!sessionStorage.getItem("logged") && window.location.href.endsWith("login.html")==false) {
+  window.location.replace("./login.html");
+} //acá es para que te redireccione al login si no estás logueado
+
+
