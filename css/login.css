@@ -34,6 +34,8 @@ label {
     vertical-align: middle;
 }
 
+
+
 h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
@@ -49,6 +51,16 @@ input[type=submit] {
     margin-right: 10px;
 }
 
+input[type=submit]:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+input[type=username]:hover, [type=password]:hover {
+    border: 2px solid aquamarine;
+
+}
+
 form {
     display: inline-block;
     margin-left: auto;
@@ -58,5 +70,11 @@ form {
 
 small {
     text-emphasis: muted;
-    color: green;
+    color: wheat;
+}
+
+.rememberme {
+    color: wheat;
+    margin-top: 20px;
+    font-size: 16px;
 }
