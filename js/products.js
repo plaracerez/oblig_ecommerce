@@ -82,3 +82,60 @@ document.getElementById("limpiar").addEventListener("click", function () {
         }
     });
 });
+
+
+//aca empieza lo del orden ascendente
+
+function ordenAscendente(array, property) {  //esta function la saque de internet
+    return array.sort(function (a, b) {
+        var x = a[property]; var y = b[property];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
+document.getElementById("precioAsc").addEventListener("click", function () {
+
+    document.getElementById("listado").innerHTML = ""; //lo saco para volver a ponerlo
+
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            var az = ordenAscendente(resultObj.data, "cost"); //devuelve el array que es az
+            showProducts(az);
+        }
+    });
+});
+
+
+function ordenDescendente(array, property) { 
+    return array.sort(function (a, b) {
+        var x = a[property]; var y = b[property];
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0)); //el ? es una forma de acortar un if no entendimos bien
+    });
+}
+
+document.getElementById("precioDesc").addEventListener("click", function () {
+
+    document.getElementById("listado").innerHTML = "";
+
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            var za = ordenDescendente(resultObj.data, "cost"); //devuelve el array que es za
+            showProducts(za);
+        }
+    });
+});
+
+//ahora voy a hacer el orden de relevancia jeje
+
+document.getElementById("relevDesc").addEventListener("click", function () {
+
+    document.getElementById("listado").innerHTML = "";
+
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            var relevancia = ordenDescendente(resultObj.data, "soldCount");
+            showProducts(relevancia);
+        }
+    });
+});
+
