@@ -115,7 +115,7 @@ function sortProducts(criterio, array) {
     let result = [];
 
     if (criterio === ORDER_ASC_BY_PRICE) {
-        result = array.sort(function (a, b) { 
+        result = array.sort(function (a, b) {
             if (a.cost < b.cost) { return -1; }
             if (a.cost > b.cost) { return 1; }
             return 0;
@@ -140,22 +140,19 @@ function sortProducts(criterio, array) {
     return result;
 }
 
-//estos son todos los events 
+//estos son todos los eventlisteners 
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             productsArray = resultObj.data;
 
-            /* 
-            aca ordeno por defecto las lanas por grosor
-            productsArray = sortProducts(ORDER_ASC_BY_PRICE, productssArray);
-            */
-
             showProducts(productsArray);
         }
     })
 
+    //botones de filtro
+    
     document.getElementById("filtroProductos").addEventListener("click", function () {
 
         minPrice = document.getElementById("filtroMin").value;
@@ -190,19 +187,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     //botones de orden
-    document.getElementById("precioAsc").addEventListener("click", function() {
+    document.getElementById("precioAsc").addEventListener("click", function () {
         productsArray = sortProducts(ORDER_ASC_BY_PRICE, productsArray);
 
         showProducts(productsArray);
     });
 
-    document.getElementById("precioDesc").addEventListener("click", function() {
+    document.getElementById("precioDesc").addEventListener("click", function () {
         productsArray = sortProducts(ORDER_DESC_BY_PRICE, productsArray);
 
         showProducts(productsArray);
     });
 
-    document.getElementById("relevDesc").addEventListener("click", function() {
+    document.getElementById("relevDesc").addEventListener("click", function () {
         productsArray = sortProducts(ORDER_DESC_BY_RELEV, productsArray);
 
         showProducts(productsArray);
@@ -213,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 /*
-//aca lo del filtro 
+//aca lo del filtro
 
 document.getElementById("filtroProductos").addEventListener("click", function () {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
@@ -267,7 +264,7 @@ document.getElementById("precioAsc").addEventListener("click", function () {
 });
 
 
-function ordenDescendente(array, property) { 
+function ordenDescendente(array, property) {
     return array.sort(function (a, b) {
         var x = a[property]; var y = b[property];
         return ((x > y) ? -1 : ((x < y) ? 1 : 0)); //el ? es una forma de acortar un if no entendimos bien
