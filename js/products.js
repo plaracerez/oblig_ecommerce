@@ -1,12 +1,27 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+//estas constantes las saqué de lanas
+const ORDER_ASC_BY_PRICE = "price->PRICE";
+const ORDER_DESC_BY_PRICE = "PRICE->price";
+const ORDER_DESC_BY_RELEV = "RELEV->relev";
+
+var productsArray = [];
+
+var minPrice = undefined;
+var maxPrice = undefined;
+//no sé qué onda el buscar
+var buscar = undefined;
+
+//------------------------
 document.addEventListener("DOMContentLoaded", function (e) {
 
 });
 
 
 //en esta parte inserto los elementos en el html con sus estilos correspondientes
+/* esto lo cancelé solo porque abajo lo reescribí pero si no sale, descancelo esto y saco lo del filtro
 var productsArray = [];
 
 function showProducts(array) {
@@ -51,8 +66,154 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     })
 });
+*/
+
+//filtro de rango
+
+function showProducts(array) {
+
+    let contenido = "";
+    for (let i = 0; i < array.length; i++) {
+        let products = array[i];
+
+        if (((minPrice == undefined) || (minPrice != undefined && parseInt(products.cost) >= minPrice)) ||
+            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(products.cost) <= maxPrice))) {
+
+            if (buscar == undefined || products.price.indexOf(buscar) != -1) {
+                contenido += `
+                <a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+            
+                    <div class="col-3">
+                        <img src="`+ products.imgSrc + `"class="img-thumbnail">
+                    </div>
+            
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h2 class="mb-1">`+ products.name + `</h2>
+                            <p class="text-muted">Vendidos: `+ products.soldCount + `</p>
+                        </div>
+                        <div>
+                            <p class="mb-1 text-muted">`+ products.description + `</p>
+                            <p class="mb-1 text-muted">`+ products.currency + " " + products.cost + `</p>
+                        </div>
+                    </div>
+            
+                </div>
+                </a>
+            `
+            }
+        }
+        document.getElementById("listado").innerHTML = contenido;
+
+    }
+}
 
 
+//orden ascendente y descendente en precio y descendente en relevancia
+function sortProducts(criterio, array) {
+    let result = [];
+
+    if (criterio === ORDER_ASC_BY_PRICE) {
+        result = array.sort(function (a, b) { 
+            if (a.cost < b.cost) { return -1; }
+            if (a.cost > b.cost) { return 1; }
+            return 0;
+        });
+    } else if (criterio === ORDER_DESC_BY_PRICE) {
+        result = array.sort(function (a, b) {
+            if (a.cost > b.cost) {
+                return -1;
+            }
+            if (a.cost < b.cost) {
+                return 1;
+            }
+            return 0;
+        });
+    } else if (criterio === ORDER_DESC_BY_RELEV) {
+        result = array.sort(function (a, b) {
+            if (a.soldCount > b.soldCount) { return -1; }
+            if (a.soldCount < b.soldCount) { return 1; }
+            return 0;
+        });
+    }
+    return result;
+}
+
+//estos son todos los events 
+
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            productsArray = resultObj.data;
+
+            /* 
+            aca ordeno por defecto las lanas por grosor
+            productsArray = sortProducts(ORDER_ASC_BY_PRICE, productssArray);
+            */
+
+            showProducts(productsArray);
+        }
+    })
+
+    document.getElementById("filtroProductos").addEventListener("click", function () {
+
+        minPrice = document.getElementById("filtroMin").value;
+        maxPrice = document.getElementById("filtroMax").value;
+
+        if ((minPrice != undefined) && (minPrice != "" && parseInt(minPrice)) >= 0) {
+            minPrice = parseInt(minPrice);
+        } else {
+            minPrice = undefined;
+        }
+
+        if ((maxPrice != undefined) && (maxPrice != "" && parseInt(maxPrice)) >= 0) {
+            maxPrice = parseInt(maxPrice);
+        } else {
+            maxPrice = undefined;
+        }
+
+        showProducts(productsArray);
+    });
+
+
+    document.getElementById("limpiar").addEventListener("click", function () {
+
+        document.getElementById("filtroMin").value = "";
+        document.getElementById("filtroMax").value = "";
+
+        minPrice = undefined;
+        maxPrice = undefined;
+
+        showProducts(productsArray);
+
+    });
+
+    //botones de orden
+    document.getElementById("precioAsc").addEventListener("click", function() {
+        productsArray = sortProducts(ORDER_ASC_BY_PRICE, productsArray);
+
+        showProducts(productsArray);
+    });
+
+    document.getElementById("precioDesc").addEventListener("click", function() {
+        productsArray = sortProducts(ORDER_DESC_BY_PRICE, productsArray);
+
+        showProducts(productsArray);
+    });
+
+    document.getElementById("relevDesc").addEventListener("click", function() {
+        productsArray = sortProducts(ORDER_DESC_BY_RELEV, productsArray);
+
+        showProducts(productsArray);
+    });
+});
+
+
+
+
+/*
+//aca lo del filtro 
 
 document.getElementById("filtroProductos").addEventListener("click", function () {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
@@ -139,3 +300,4 @@ document.getElementById("relevDesc").addEventListener("click", function () {
     });
 });
 
+*/
