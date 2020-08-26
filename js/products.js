@@ -76,10 +76,12 @@ function showProducts(array) {
     for (let i = 0; i < array.length; i++) {
         let products = array[i];
 
+           
+
         if (((minPrice == undefined) || (minPrice != undefined && parseInt(products.cost) >= minPrice)) ||
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(products.cost) <= maxPrice))) {
 
-            if (buscar == undefined || products.price.indexOf(buscar) != -1) {
+            if (buscar == undefined || products.name.toLowerCase().indexOf(buscar) != -1) {
                 contenido += `
                 <a href="product-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
@@ -152,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 
     //botones de filtro
-    
+
     document.getElementById("filtroProductos").addEventListener("click", function () {
 
         minPrice = document.getElementById("filtroMin").value;
@@ -201,6 +203,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("relevDesc").addEventListener("click", function () {
         productsArray = sortProducts(ORDER_DESC_BY_RELEV, productsArray);
+
+        showProducts(productsArray);
+    });
+
+    //botones del buscador
+
+    document.getElementById("search").addEventListener('input', function () {
+
+        buscar = document.getElementById("search").value.toLowerCase();
+
+        showProducts(productsArray);
+    });
+
+    document.getElementById("cleanSearch").addEventListener("click", function () {
+        document.getElementById("search").value = "";
+
+        buscar = undefined;
 
         showProducts(productsArray);
     });
