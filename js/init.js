@@ -44,6 +44,17 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+
+  //prueba user (todo esto de adentro)
+  let userlogged = localStorage.getItem("user-logged");
+  let infouser = document.getElementById("info-user");
+  let user = document.getElementById("user");
+
+  if (userlogged) {
+    userlogged = JSON.parse(userlogged);
+    user.innerText = user.innerText + userlogged.username;
+    infouser.style = "display:inline-block";
+  }
 });
 
 if(!sessionStorage.getItem("logged") && window.location.href.endsWith("login.html")==false) {

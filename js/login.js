@@ -8,13 +8,32 @@ sessionStorage.setItem("logged", false);   //en este caso la key es logged
 //elementos HTML presentes.
 
 
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", function (e) {
 
-    document.getElementById("signin").addEventListener("submit", (evento)=> { //este submit no es el type del botón ta
-        evento.preventDefault();
-        location.href = "./index.html";   //redireccionar a index
-        sessionStorage.setItem("logged", true);
-        return true;
-    })
+    document.getElementById("signinBtn").addEventListener("click", function (e) {
+        let inputUser = document.getElementById("inputUsername");
+        let inputPassword = document.getElementById("inputPassword");
+        let camposCompletos = true;
+
+        if (inputUser.value === "") {
+            inputUser.classList.add("invalid");
+            camposCompletos = false;
+        }
+
+        if (inputPassword.value === "") {
+            inputPassword.classList.add("invalid");
+            camposCompletos = false;
+        }
+
+        if (camposCompletos) {
+            localStorage.setItem("user-logged", JSON.stringify({ username: inputUser.value }));
+            window.location = "index.html";
+        }
+
+        else {
+            alert("Tenés que ingresar tus datos")
+        }
+    }
+    ); 
 
 });
