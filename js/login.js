@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let camposCompletos = true;
 
         if (inputUser.value === "") {
-            inputUser.classList.add("invalid");
+            inputUser.classList.add("invalid"); //esto es para que quede en rojo el campo
             camposCompletos = false;
         }
 

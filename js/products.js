@@ -78,7 +78,7 @@ function showProducts(array) {
 
            
 
-        if (((minPrice == undefined) || (minPrice != undefined && parseInt(products.cost) >= minPrice)) ||
+        if (((minPrice == undefined) || (minPrice != undefined && parseInt(products.cost) >= minPrice)) &&
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(products.cost) <= maxPrice))) {
 
             if (buscar == undefined || products.name.toLowerCase().indexOf(buscar) != -1) {
