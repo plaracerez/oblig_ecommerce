@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
   if (userlogged) {
     userlogged = JSON.parse(userlogged);
-    user.innerText = user.innerText + 'Usuario actual: ' + userlogged.username;
+    user.innerText = user.innerText + userlogged.username;
     infouser.style = "display:inline-block; color:#ebb2de;";
   }
 });
