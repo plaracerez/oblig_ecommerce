@@ -13,9 +13,17 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+
+  <style>
+    .checked {
+        color: orange;
+    }
+</style>
+
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -23,19 +31,48 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <div id="info-user" style="display: none;"> <!--el user-->
+      <div id="info-user" style="display: none;">
+        <!--el user-->
         <a class="py-2 d-none d-md-inline-block" id="user"></a>
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+
+  <div class="text-center p-4">
+    <h2>Información del producto</h2>
+    <p class="lead">Verás aquí toda la información del producto.</p>
   </div>
+
+  <div class="seeProduct">
+    <div id="contenido"></div>
+    <hr>
+    <br>
+    <div id="imagenes" class="img"></div>
+    <hr>
+    <a href="products.html" id="volverList">Volver al listado completo.</a><br>
+    <p><strong>La opinión de nuestres clientes importa</strong></p>
+    <div id="comentarios"></div>
+  </div>
+
+  <div id="newCommentContent" style="display:none;">
+    <p>Dejanos tu opinión sobre este producto:</p>
+
+    <textarea id="newComm" rows="8" cols="60"></textarea>
+
+    <p>Ponele sus estrellitas:</p>
+
+    <select id="newCal">
+      <option value="1">🟊</option>
+      <option value="2">🟊🟊</option>
+      <option value="3">🟊🟊🟊</option>
+      <option value="4">🟊🟊🟊🟊</option>
+      <option value="5">🟊🟊🟊🟊🟊</option>
+    </select>
+    <br>
+    <button id="enviarComm">ENVIAR</button>
+  </div>
+
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">

@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         else {
             alert("Tenés que ingresar tus datos")
         }
-    }
-    ); 
+    }); 
 
 });

@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 });
 
+function verProduct(name) {
+    localStorage.setItem('product', JSON.stringify({ productId: name}));
+    window.location = 'product-info.html';
+}
 
 //en esta parte inserto los elementos en el html con sus estilos correspondientes y hago el filtro de rango
 //y la funcion de busqueda
@@ -45,7 +49,7 @@ function showProducts(array) {
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
                             <h2 class="mb-1">`+ products.name + `</h2>
-                            <p class="text-muted">Vendidos: `+ products.soldCount + `</p>
+                            <p class="text-muted">Vendidos: `+ products.soldCount + `</p>                           
                         </div>
                         <div>
                             <p class="mb-1 text-muted">`+ products.description + `</p>
@@ -55,6 +59,7 @@ function showProducts(array) {
             
                 </div>
                 </a>
+                
             `
             }
         }
