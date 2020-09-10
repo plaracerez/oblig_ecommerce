@@ -20,9 +20,9 @@
 
   <style>
     .checked {
-        color: orange;
+      color: orange;
     }
-</style>
+  </style>
 
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -48,31 +48,40 @@
     <hr>
     <br>
     <div id="imagenes" class="img"></div>
-    <hr>
-    <a href="products.html" id="volverList">Volver al listado completo.</a><br>
-    <p><strong>La opinión de nuestres clientes importa</strong></p>
-    <div id="comentarios"></div>
-  </div>
-
-  <div id="newCommentContent" style="display:none;">
-    <p>Dejanos tu opinión sobre este producto:</p>
-
-    <textarea id="newComm" rows="8" cols="60"></textarea>
-
-    <p>Ponele sus estrellitas:</p>
-
-    <select id="newCal">
-      <option value="1">🟊</option>
-      <option value="2">🟊🟊</option>
-      <option value="3">🟊🟊🟊</option>
-      <option value="4">🟊🟊🟊🟊</option>
-      <option value="5">🟊🟊🟊🟊🟊</option>
-    </select>
     <br>
-    <button id="enviarComm">ENVIAR</button>
+    <div class="container">
+      <a type="button" class="btn btn-light btn-lg btn-block" href="products.html" id="volverList" class="text-muted">
+        Volver al listado completo</a>
+    </div>
+    <hr><br>
+    <div class="container">
+      <h3>Comentarios:</h3><br>
+      <hr>
+      <div id="comentarios"></div>
+    </div>
   </div>
 
-  
+  <div class="container">
+    <div id="newCommentContent" style="display:none;">
+      <p>Dejanos tu opinión sobre este producto:</p>
+
+      <textarea id="newComm" rows="8" cols="60"></textarea>
+
+      <p>Ponele sus estrellitas:</p>
+
+      <select id="newCal">
+        <option value="1">🟊</option>
+        <option value="2">🟊🟊</option>
+        <option value="3">🟊🟊🟊</option>
+        <option value="4">🟊🟊🟊🟊</option>
+        <option value="5">🟊🟊🟊🟊🟊</option>
+      </select>
+      <br><br>
+      <button class="btn btn-light" id="enviarComm">ENVIAR</button>
+    </div>
+  </div>
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">

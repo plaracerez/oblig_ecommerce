@@ -12,20 +12,27 @@ function showProduct(auto, arrayComments) {
 
 
     info += `
-                <h2>${auto.name}</h2>
-                <p>${auto.description}</p><br>
-                <p>Llevate este compañero por solo ${auto.cost} ${auto.currency}.</p><br>
-                <p>¡Apurate!, ya llevamos ${auto.soldCount} vendidos.
+                <h2  class='text-center'>${auto.name}</h2>
+    
+                <br><img class="img-thumbnail mx-auto d-block" id="imgcentral" src="${auto.images[0]}" width="600px" alt=""><br>
+                `
+    info += `<div class="container">
+                <br>
+                <h2>Descripción</h2>
+                <p class="lead">${auto.description}</p><br>
+                <p class="lead">Llevate este compañero por solo ${auto.cost} ${auto.currency}.</p><br>
+                <p class="lead">¡Apurate!, ya llevamos ${auto.soldCount} vendidos.</p>
+            </div>
             
                 `
 
     imgs += `
-            <img class="img" src="${auto.images[0]}" width="100px" alt="">
-            <img class="img" src="${auto.images[1]}" width="100px" alt="">
-            <img class="img" src="${auto.images[2]}" width="100px" alt="">
-            <img class="img" src="${auto.images[3]}" width="100px" alt="">
-            <img class="img" src="${auto.images[4]}" width="100px" alt="">
-            `;
+        <div class="container">
+            <img class="m-2 img-thumbnail" src="${auto.images[1]}" width="500px" alt="">
+            <img class="m-2 img-thumbnail" src="${auto.images[2]}" width="500px" alt="">
+            <img class="m-2 img-thumbnail" src="${auto.images[3]}" width="500px" alt="">
+            <img class="m-2 img-thumbnail" src="${auto.images[4]}" width="500px" alt="">
+        </div>`;
 
 
     arrayComments.forEach(function (comment) {
@@ -59,12 +66,12 @@ function showProduct(auto, arrayComments) {
     document.getElementById("enviarComm").addEventListener("click", function () {
         let now = new Date();
 
-        let dateTime = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+        let dateTime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} `;
         dateTime += `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
         let newComment = {
             score: parseInt(document.getElementById("newCal").value),
-            description: parseInt(document.getElementById("newComm").value),
+            description: document.getElementById("newComm").value,
             user: JSON.parse(localStorage.getItem("user-logged")).username,
             dateTime: dateTime
         };
@@ -72,6 +79,8 @@ function showProduct(auto, arrayComments) {
         comentariosArray.push(newComment);
 
         showProduct(auto, comentariosArray);
+
+        document.getElementById("newComm").value = "";
     })
 
 
