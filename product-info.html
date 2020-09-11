@@ -14,6 +14,33 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!--estrellitas nuevas-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    .star-rating {
+      direction: rtl;
+      display: inline-block;
+      
+    }
+
+    .star-rating input[type=radio] {
+      display: none
+    }
+
+    .star-rating label {
+      color: black;
+      font-size: 20px;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label,
+    .star-rating input[type=radio]:checked~label {
+      color: orange
+    }
+  </style>
 </head>
 
 <body>
@@ -67,15 +94,36 @@
 
       <textarea id="newComm" rows="8" cols="60"></textarea>
 
+      <br><br>
       <p>Ponele sus estrellitas:</p>
 
-      <select id="newCal">
-        <option value="1">🟊</option>
-        <option value="2">🟊🟊</option>
-        <option value="3">🟊🟊🟊</option>
-        <option value="4">🟊🟊🟊🟊</option>
-        <option value="5">🟊🟊🟊🟊🟊</option>
-      </select>
+      <div id="newCal" class="star-rating">
+        <input id="star-5" type="radio" name="rating" value="5" />
+        <label for="star-5" title="5 stars">
+          <i class="active fa fa-star"></i>
+        </label>
+    
+        <input id="star-4" type="radio" name="rating" value="4" />
+        <label for="star-4" title="4 stars">
+          <i class="active fa fa-star"></i>
+        </label>
+    
+        <input id="star-3" type="radio" name="rating" value="3" />
+        <label for="star-3" title="3 stars">
+          <i class="active fa fa-star"></i>
+        </label>
+    
+        <input id="star-2" type="radio" name="rating" value="2" />
+        <label for="star-2" title="2 stars">
+          <i class="active fa fa-star"></i>
+        </label>
+    
+        <input id="star-1" type="radio" name="rating" value="1" checked />
+        <label for="star-1" title="1 star">
+          <i class="active fa fa-star"></i>
+        </label>
+    
+      </div>
       <br><br>
       <button class="btn btn-light" id="enviarComm">ENVIAR</button>
     </div>

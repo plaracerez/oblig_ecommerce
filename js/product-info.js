@@ -70,7 +70,7 @@ function showProduct(auto, arrayComments) {
         dateTime += `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
         let newComment = {
-            score: parseInt(document.getElementById("newCal").value),
+            score: parseInt(document.querySelector('input[name="rating"]:checked').value),
             description: document.getElementById("newComm").value,
             user: JSON.parse(localStorage.getItem("user-logged")).username,
             dateTime: dateTime
@@ -80,7 +80,7 @@ function showProduct(auto, arrayComments) {
 
         showProduct(auto, comentariosArray);
 
-        document.getElementById("newComm").value = "";
+        //document.getElementById("newComm").value = "";
     })
 
 
