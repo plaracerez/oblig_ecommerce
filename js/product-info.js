@@ -56,32 +56,7 @@ function showProduct(auto, arrayComments) {
 
     });
 
-    //comentar
-    let userLogged = localStorage.getItem("user-logged");
-
-    if (userLogged) {
-        document.getElementById("newCommentContent").style = "display: inline-block";
-    }
-
-    document.getElementById("enviarComm").addEventListener("click", function () {
-        let now = new Date();
-
-        let dateTime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} `;
-        dateTime += `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-
-        let newComment = {
-            score: parseInt(document.querySelector('input[name="rating"]:checked').value),
-            description: document.getElementById("newComm").value,
-            user: JSON.parse(localStorage.getItem("user-logged")).username,
-            dateTime: dateTime
-        };
-
-        comentariosArray.push(newComment);
-
-        showProduct(auto, comentariosArray);
-
-        //document.getElementById("newComm").value = "";
-    })
+    
 
 
 
@@ -105,4 +80,41 @@ document.addEventListener("DOMContentLoaded", function (e) {
             showProduct(auto, comentariosArray);
         }
     });
+
+    //comentar
+    let userLogged = localStorage.getItem("user-logged");
+
+    if (userLogged) {
+        document.getElementById("newCommentContent").style = "display: inline-block";
+    }
+
+    document.getElementById("enviarComm").addEventListener("click", function () {
+        let now = new Date();
+
+        let dateTime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} `;
+        dateTime += `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+
+        //las estrellitas
+        var elements = document.getElementsByName("rating");
+        let score;
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].checked) {
+                score = parseInt(elements[i].value);
+            }
+        }
+
+
+        let newComment = {
+            score: score,
+            description: document.getElementById("newComm").value,
+            user: JSON.parse(localStorage.getItem("user-logged")).username,
+            dateTime: dateTime
+        };
+
+        comentariosArray.push(newComment);
+
+        showProduct(auto, comentariosArray);
+
+        document.getElementById("newComm").value = "";
+    })
 })
