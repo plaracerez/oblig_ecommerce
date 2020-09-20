@@ -143,3 +143,17 @@ a.custom-card:hover {
 #carrusel {
   width: 600px;
 }
+
+.dropdown {
+  height: 40px;
+}
+
+.dropdown-toggle::after {
+  color: #ebb2de;
+}
+
+#logout {
+  background-color: rgb(124, 2, 55);
+  color: white;
+  border-color:  rgb(124, 2, 55);
+}

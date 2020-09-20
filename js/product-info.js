@@ -138,7 +138,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             productsArray = resultObj.data;
 
-            showRelatedProducts(productsArray, auto.relatedProducts);
+            showRelatedProducts(productsArray, auto.relatedProducts); //el auto. es la variable del json anterior
+            
         }
     })
 

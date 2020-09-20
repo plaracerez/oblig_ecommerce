@@ -49,11 +49,13 @@ document.addEventListener("DOMContentLoaded", function(e){
   let userlogged = localStorage.getItem("user-logged");
   let infouser = document.getElementById("info-user");
   let user = document.getElementById("user");
+  let toggle = document.getElementById("toggle");
 
   if (userlogged) {
     userlogged = JSON.parse(userlogged);
     user.innerText = user.innerText + userlogged.username;
     infouser.style = "display:inline-block; color:#ebb2de;";
+    toggle.style = "";
   }
 });
 
@@ -61,4 +63,7 @@ if(!sessionStorage.getItem("logged") && window.location.href.endsWith("login.htm
   window.location.replace("./login.html");
 } //acá es para que te redireccione al login si no estás logueado
 
-
+function remove() {
+  localStorage.removeItem('user-logged');
+  window.location = 'login.html';
+}
