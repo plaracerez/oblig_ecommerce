@@ -70,7 +70,7 @@ function showProduct(auto, arrayComments) {
             <img class="m-2 img-thumbnail" src="${auto.images[4]}" width="500px" alt="">
         </div>
     -->`;
-    
+
 
 
     arrayComments.forEach(function (comment) {
@@ -122,26 +122,31 @@ document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             comentariosArray = resultObj.data;
-        }
-    })
+        };
 
-    getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            auto = resultObj.data;
 
-            showProduct(auto, comentariosArray);
-        }
+        getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
+            if (resultObj.status === "ok") {
+                auto = resultObj.data;
+
+                showProduct(auto, comentariosArray);
+            };
+
+            //relacionados
+            getJSONData(PRODUCTS_URL).then(function (resultObj) {
+                if (resultObj.status === "ok") {
+                    productsArray = resultObj.data;
+
+                    showRelatedProducts(productsArray, auto.relatedProducts); //el auto. es la variable del json anterior
+
+                };
+            });
+        });
+
+
     });
 
-    //relacionados
-    getJSONData(PRODUCTS_URL).then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            productsArray = resultObj.data;
 
-            showRelatedProducts(productsArray, auto.relatedProducts); //el auto. es la variable del json anterior
-            
-        }
-    })
 
 
     //comentar
