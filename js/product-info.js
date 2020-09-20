@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
 
 
-    });
+    }); //estos jsondata los puse uno dentro del otro para que me funcionara el de related (?)
 
 
 
