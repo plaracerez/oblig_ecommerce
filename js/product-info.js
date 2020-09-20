@@ -109,8 +109,21 @@ function showRelatedProducts(arrayListado, arrayRelacionados) {
     let contenido = "";
 
     arrayRelacionados.forEach(function (i) {
-        contenido += `<strong>${arrayListado[i].name}</strong><br>${arrayListado[i].description}<br>
-        <img src="${arrayListado[i].imgSrc}" width="100px"><br><br>`
+        contenido += `<!--<strong>${arrayListado[i].name}</strong><br>${arrayListado[i].description}<br>
+        <img src="${arrayListado[i].imgSrc}" width="100px"><br><br>-->
+        
+        
+                <div class="col-md-3">
+                    <a href="#" class="card mb-4 shadow-sm custom-card">
+                        <img class="bd-placeholder-img card-img-top" src="${arrayListado[i].imgSrc}">
+                        <h4 class="m-2" style="text-align: center;">${arrayListado[i].name}</h4>
+                        <div class="card-body">
+                            <p class="card-text">${arrayListado[i].description}</p>
+                        </div>
+                    </a>                    
+                </div>
+            
+        `
     });
 
     document.getElementById("relatedProducts").innerHTML = contenido;
