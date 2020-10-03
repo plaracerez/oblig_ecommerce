@@ -40,11 +40,13 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      
+
       <!--El toggle-->
       <div class="dropdown btn-group" id="toggle" style="display: none;">
-        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div id="info-user" style="display: none;"> <!--el user-->
+        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <div id="info-user" style="display: none;">
+            <!--el user-->
             <a class="py-1 d-none d-md-inline-block" id="user"></a>
           </div>
         </button>
@@ -55,17 +57,32 @@
           <a class="dropdown-item" href="login.html" id="logout" onclick="remove()">Cerrar sesión</a>
         </div>
       </div>
-      
+
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+  <main>
+    <div class="text-center p-4">
+      <h2>Carrito</h2>
+      <p class="lead">Verás aquí todos los productos en tu carrito</p>
     </div>
-  </div>
+
+    <h3 id="titProd">Productos en el carrito (<span id="productCount"></span>)</h3><br>
+    <div id="purchaseList"></div>
+    
+    <br><br>
+    
+    <div id="totales" class="container">
+      <p>Total de esta compra: <span id="total"></span> USD</p>
+    </div>
+
+
+
+
+  </main>
+
+
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
