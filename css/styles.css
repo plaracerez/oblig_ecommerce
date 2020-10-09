@@ -197,3 +197,12 @@ td input[type="number"] {
   border-left: 2px solid;
   padding-left: 20px;
 }
+
+#premium, #express, #estandar {
+  margin-left: 50px;
+}
+
+#totEnvio {
+  text-align: right;
+  margin-right: 10px;
+}

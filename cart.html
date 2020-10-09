@@ -70,11 +70,35 @@
     <h3 id="titProd">Productos en el carrito (<span id="productCount"></span>)</h3><br>
     <div id="purchaseList"></div>
     
-    <br><br>
+    <br>
     
     <div id="totales" class="container">
-      <p>Total de esta compra: <span id="total"></span> USD</p>
+      <p><strong>Total de esta compra: <span id="total"></span> USD</strong></p>
+    </div><br>
+
+    <div class="container border rounded" style="width: 25%;">
+      <h4 style="margin-top: 20px; text-align: center;">Elegí el tipo de envío</h4>
+      <br>
+
+      <div>
+        <input id="premium" type="radio" name="envio" value="1" checked="" required="">
+        <label for="premium">Premium (2 a 5 días)</label><br>
+
+        <input id="express" type="radio" name="envio" value="2" required="">
+        <label for="express">Express (5 a 8 días)</label><br>
+
+        <input id="estandar" type="radio" name="envio" value="3" required="">
+        <label for="estandar">Estándar (12 a 15 días)</label><br>
     </div>
+    <hr>
+    <p id="totEnvio"><strong>Total con envío: <span id=""></span></strong></p>
+    
+    </div><br>
+    
+    <div id="boton" style="text-align: center;">
+      <button type="button" class="btn btn-success" style="width: 25%;">Confirmar pedido</button>
+  </div>
+    <br>
 
 
 
