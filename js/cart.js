@@ -83,7 +83,7 @@ function calcSubtotal(precio, i) {
 
 }
 
-function calcTotalPosta() { //ya anda
+function calcTotalPosta() {
 
     let totalParcial = document.getElementById("total").innerHTML; //el valor de la compra sin envío as displayed
     let porcentEnvio = document.getElementsByName("envio"); //un array con los radio de tipo de envío
@@ -99,7 +99,7 @@ function calcTotalPosta() { //ya anda
     document.getElementById('totalPosta').innerHTML = resultado.toFixed(2);
 }
 
-//esto no anda,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
 function calcEnvioPorc() {
     
     let totalAplicar = document.getElementById("total").innerHTML;
@@ -119,7 +119,7 @@ function calcEnvioPorc() {
 
 //-----------------------------------
 
-//lo del método de pago
+//lo del método de pago-----------------
 
 function showpaymentMethod() {
     let contenido = "";
@@ -193,7 +193,7 @@ function showpaymentMethod() {
 
 //-----------------------------------
 
-//validar el modal----------------------------------------- no anda obvio. dónde lo llamo?
+//validar el modal-----------------------------------------
 
 function validPayment() {
     let titularTarj = document.getElementById("titTarjeta");
@@ -260,13 +260,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
         event.preventDefault();
         event.stopPropagation();
 
-        //hasta acá lo que ya estaba, ahora agrego lo nuevo
         if (validPayment()) {
             document.getElementById("botonModal").classList.remove("btn-dark");
             document.getElementById("botonModal").classList.remove("btn-danger");
             document.getElementById("botonModal").classList.add("btn-success");
 
-            document.getElementById("alertModal").innerHTML = `mirá negri lo hiciste bárbaro`;
+            document.getElementById("alertModal").innerHTML = `
+            <div class="alert alert-primary" role="alert">
+            Tu método de pago fue ingresado correctamente
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>`;
 
         } else {
             event.preventDefault();
@@ -275,7 +280,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
             document.getElementById("botonModal").classList.remove("btn-success");
             document.getElementById("botonModal").classList.add("btn-danger");
 
-            document.getElementById("alertModal").innerHTML = `mirá negri te falta data`;
+            document.getElementById("alertModal").innerHTML = `
+            <div class="alert alert-danger" role="alert">
+            Tenés que llenar todos los campos del método de pago para continuar
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+          `;
         }
 
 
@@ -299,7 +311,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         formulario.classList.add('was-validated');
 
         if (formulario.checkValidity() && paymentType) {
-            document.getElementById("alertModal").innerHTML = `acá hago la alerta que me ocupe todo el form afuera`;
+            document.getElementById("alertSuccess").innerHTML = `
+            <div class="alert alert-success" role="alert">
+            Tu compra fue ingresada con éxito. ¡Que la disfrutes!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>`;
         }
     });
 });

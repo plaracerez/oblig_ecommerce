@@ -117,72 +117,73 @@
       <p><strong>Total de esta compra: <span id="total"></span> USD</strong></p>
     </div><br>
 
+    <div id="alertSuccess">
+      <form id="form-afuera" novalidate>
+        <div class="container border rounded" style="width: 30%;">
+          <h4 style="margin-top: 20px; text-align: center;">Elegí el tipo de envío</h4>
+          <br>
+          <div class="container">
+            <h5><strong>Dirección</strong></h5>
 
-    <form id="form-afuera" novalidate>
-      <div class="container border rounded" style="width: 30%;">
-        <h4 style="margin-top: 20px; text-align: center;">Elegí el tipo de envío</h4>
-        <br>
-        <div class="container">
-          <h5><strong>Dirección</strong></h5>
+            <input id="cyn" class="form-control" type="text" name="datosenvio" placeholder="Calle y número" required>
+            <div class="invalid-feedback">
+              Ingresá tu calle
+            </div><br>
 
-          <input id="cyn" class="form-control" type="text" name="datosenvio" placeholder="Calle y número" required>
-          <div class="invalid-feedback">
-            Ingresá tu calle
-          </div><br>
+            <input id="esquina" class="form-control" type="text" name="datosenvio" placeholder="Esquina" required>
+            <div class="invalid-feedback">
+              Ingresá tu esquina
+            </div><br>
 
-          <input id="esquina" class="form-control" type="text" name="datosenvio" placeholder="Esquina" required>
-          <div class="invalid-feedback">
-            Ingresá tu esquina
-          </div><br>
+            <input id="pais" class="form-control" type="text" name="datosenvio" placeholder="País" required>
+            <div class="invalid-feedback">
+              Ingresá tu país
+            </div><br>
 
-          <input id="pais" class="form-control" type="text" name="datosenvio" placeholder="País" required>
-          <div class="invalid-feedback">
-            Ingresá tu país
-          </div><br>
-
-        </div>
-        <div class="container">
-          <h5><strong>Tipo de envío</strong></h5>
-          <div class="row">
-            <div class="col">
-              <input onchange="calcTotalPosta();" id="envio0" type="radio" name="envio" value="1.15" checked=""
-                required>
-              <label for="premium">Premium (2 a 5 días) ‣ +15%</label><br>
-            </div>
-            <div class="col-4"><span id="envPrem"></span> USD</div>
           </div>
-          <div class="row">
-            <div class="col">
-              <input onchange="calcTotalPosta();" id="envio1" type="radio" name="envio" value="1.07" required>
-              <label for="express">Express (5 a 8 días) ‣ +7%</label><br>
+          <div class="container">
+            <h5><strong>Tipo de envío</strong></h5>
+            <div class="row">
+              <div class="col">
+                <input onchange="calcTotalPosta();" id="envio0" type="radio" name="envio" value="1.15" checked=""
+                  required>
+                <label for="premium">Premium (2 a 5 días) ‣ +15%</label><br>
+              </div>
+              <div class="col-4"><span id="envPrem"></span> USD</div>
             </div>
-            <div class="col-4"><span id="envExp"></span> USD</div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <input onchange="calcTotalPosta();" id="envio2" type="radio" name="envio" value="1.05" required>
-              <label for="estandar">Estándar (12 a 15 días) ‣ +5%</label><br>
+            <div class="row">
+              <div class="col">
+                <input onchange="calcTotalPosta();" id="envio1" type="radio" name="envio" value="1.07" required>
+                <label for="express">Express (5 a 8 días) ‣ +7%</label><br>
+              </div>
+              <div class="col-4"><span id="envExp"></span> USD</div>
             </div>
-            <div class="col-4"><span id="envEst"></span> USD</div>
+            <div class="row">
+              <div class="col">
+                <input onchange="calcTotalPosta();" id="envio2" type="radio" name="envio" value="1.05" required>
+                <label for="estandar">Estándar (12 a 15 días) ‣ +5%</label><br>
+              </div>
+              <div class="col-4"><span id="envEst"></span> USD</div>
+            </div>
           </div>
-        </div>
 
-        <hr>
-        <p id="totEnvio"><strong>Total con envío: <span id="totalPosta"></span></strong></p>
-        <hr>
-        <div id="boton" style="text-align: center;">
-          <button type="button" id="botonModal" class="btn btn-dark" style="font-size: 14px;" data-toggle="modal"
-            data-target="#modal1">Confirmar y elegir método de pago</button>
+          <hr>
+          <p id="totEnvio"><strong>Total con envío: <span id="totalPosta"></span></strong></p>
+          <hr>
+          <div id="boton" style="text-align: center;">
+            <button type="button" id="botonModal" class="btn btn-dark" style="font-size: 14px;" data-toggle="modal"
+              data-target="#modal1">Confirmar y elegir método de pago</button>
 
             <div id="alertModal"></div>
+          </div><br>
         </div><br>
-      </div><br>
 
-      <div id="confirmFinal" class="container" style="text-align: center;">
-        <button id="botonFinal" type="submit" class="btn btn-success" style="font-size: 16px; width: 400px;">Terminar
-          compra</button>
-      </div>
-    </form>
+        <div id="confirmFinal" class="container" style="text-align: center;">
+          <button id="botonFinal" type="submit" class="btn btn-success" style="font-size: 16px; width: 400px;">Terminar
+            compra</button>
+        </div>
+      </form>
+    </div>
     <br>
 
     <!------------Modal------------>
@@ -225,7 +226,7 @@
     </div>
 
     <!--fin modal-->
-    
+
 
 
   </main>
