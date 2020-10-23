@@ -67,40 +67,165 @@
       <p class="lead">Verás aquí todos los productos en tu carrito</p>
     </div>
 
+
+    <div id="success"></div>
+    <!-------------PROBANDO CON ROWS------
+
+    <div class="container cart-bucket border rounded">
+      <table id="cartTable">
+        <tr style="width: 60px;">
+          <td id="td1">
+            <div class="container"><img src="img/tree1.jpg" height="150px"></div>
+          </td>
+          <td id="td2"><strong><a href="product-info.html">Pinito jejeje</a></strong></td>
+          <td id="td3">Cantidad: <input type="number" value="${purchase.count}" id="cantidad${i}" min="0"></td>
+          <td id="td4">Precio por unidad:<br>258 pesos</td>
+          <td id="td5">Subtotal:<br><span class="subtotal" id="productSubtotal${i}">555</span> USD</td>
+        </tr>
+      </table>
+    </div>
+    <br>
+
+    <div style="height: 190px;"
+    class="container row align-items-center border rounded justify-content-center">
+      <div class="col-1"></div>
+      <div class="col-3" id="td1">
+        <div class="container"><img src="img/tree1.jpg" height="150px"></div>
+      </div>
+      <div class="col-2" id="td2">
+        <strong><a href="product-info.html">Pinito jejeje</a></strong>
+      </div>
+      <div class="col-2" id="td3">
+        <p>Cantidad <input type="number" class="form-control" value="${purchase.count}" id="cantidad${i}" min="0"></p>
+      </div>
+      <div class="col-2" id="td4">
+        <p>Precio por unidad:<br>258 pesos</p>
+      </div>
+      <div class="col-2" id="td5">
+        <p>Subtotal:<br><span class="subtotal" id="productSubtotal${i}">555</span> USD</p>
+      </div>
+    </div><br><br>
+
+    ---------------------------------------->
+
     <h3 id="titProd">Productos en el carrito (<span id="productCount"></span>)</h3><br>
     <div id="purchaseList"></div>
-    
+
     <br>
-    
+
     <div id="totales" class="container">
       <p><strong>Total de esta compra: <span id="total"></span> USD</strong></p>
     </div><br>
 
-    <div class="container border rounded" style="width: 25%;">
-      <h4 style="margin-top: 20px; text-align: center;">Elegí el tipo de envío</h4>
-      <br>
 
-      <div>
-        <input id="premium" type="radio" name="envio" value="1" checked="" required="">
-        <label for="premium">Premium (2 a 5 días)</label><br>
+    <form id="form-afuera" novalidate>
+      <div class="container border rounded" style="width: 30%;">
+        <h4 style="margin-top: 20px; text-align: center;">Elegí el tipo de envío</h4>
+        <br>
+        <div class="container">
+          <h5><strong>Dirección</strong></h5>
 
-        <input id="express" type="radio" name="envio" value="2" required="">
-        <label for="express">Express (5 a 8 días)</label><br>
+          <input id="cyn" class="form-control" type="text" name="datosenvio" placeholder="Calle y número" required>
+          <div class="invalid-feedback">
+            Ingresá tu calle
+          </div><br>
 
-        <input id="estandar" type="radio" name="envio" value="3" required="">
-        <label for="estandar">Estándar (12 a 15 días)</label><br>
-    </div>
-    <hr>
-    <p id="totEnvio"><strong>Total con envío: <span id=""></span></strong></p>
-    
-    </div><br>
-    
-    <div id="boton" style="text-align: center;">
-      <button type="button" class="btn btn-success" style="width: 25%;">Confirmar pedido</button>
-  </div>
+          <input id="esquina" class="form-control" type="text" name="datosenvio" placeholder="Esquina" required>
+          <div class="invalid-feedback">
+            Ingresá tu esquina
+          </div><br>
+
+          <input id="pais" class="form-control" type="text" name="datosenvio" placeholder="País" required>
+          <div class="invalid-feedback">
+            Ingresá tu país
+          </div><br>
+
+        </div>
+        <div class="container">
+          <h5><strong>Tipo de envío</strong></h5>
+          <div class="row">
+            <div class="col">
+              <input onchange="calcTotalPosta();" id="envio0" type="radio" name="envio" value="1.15" checked=""
+                required>
+              <label for="premium">Premium (2 a 5 días) ‣ +15%</label><br>
+            </div>
+            <div class="col-4"><span id="envPrem"></span> USD</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input onchange="calcTotalPosta();" id="envio1" type="radio" name="envio" value="1.07" required>
+              <label for="express">Express (5 a 8 días) ‣ +7%</label><br>
+            </div>
+            <div class="col-4"><span id="envExp"></span> USD</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input onchange="calcTotalPosta();" id="envio2" type="radio" name="envio" value="1.05" required>
+              <label for="estandar">Estándar (12 a 15 días) ‣ +5%</label><br>
+            </div>
+            <div class="col-4"><span id="envEst"></span> USD</div>
+          </div>
+        </div>
+
+        <hr>
+        <p id="totEnvio"><strong>Total con envío: <span id="totalPosta"></span></strong></p>
+        <hr>
+        <div id="boton" style="text-align: center;">
+          <button type="button" id="botonModal" class="btn btn-dark" style="font-size: 14px;" data-toggle="modal"
+            data-target="#modal1">Confirmar y elegir método de pago</button>
+
+            <div id="alertModal"></div>
+        </div><br>
+      </div><br>
+
+      <div id="confirmFinal" class="container" style="text-align: center;">
+        <button id="botonFinal" type="submit" class="btn btn-success" style="font-size: 16px; width: 400px;">Terminar
+          compra</button>
+      </div>
+    </form>
     <br>
 
+    <!------------Modal------------>
 
+    <div class="modal fade" id="modal1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Elegí la forma de pago</h4>
+          </div>
+          <div class="modal-body">
+            <form action="" id="form-adentro" novalidate>
+              <div>
+                <h4>Costo total: <span></span></h4>
+                <br>
+                <div>
+                  <h4>Método de pago</h4>
+                  <input id="credito" type="radio" name="pago" value="c" checked="" required>
+                  <label for="credito">Crédito</label><br>
+
+                  <input id="transfer" type="radio" name="pago" value="t" required>
+                  <label for="transfer">Transferencia bancaria</label><br>
+
+                  <div id="paymentMethod"></div><br>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-block btn-success">Confirmar</button>
+                    </div>
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-block btn-outline-secondary"
+                        data-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--fin modal-->
+    
 
 
   </main>

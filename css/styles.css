@@ -176,6 +176,12 @@ td input[type="number"] {
   text-align: right;
 }
 
+#td0 {
+  width: 5px;
+  vertical-align: text-top;
+  text-align: left;
+}
+
 #td1 {
   width: 400px;
 }
@@ -198,11 +204,8 @@ td input[type="number"] {
   padding-left: 20px;
 }
 
-#premium, #express, #estandar {
-  margin-left: 50px;
-}
-
 #totEnvio {
   text-align: right;
   margin-right: 10px;
 }
+

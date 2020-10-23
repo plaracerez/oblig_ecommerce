@@ -1,4 +1,5 @@
 var cartArray = [];
+var paymentType = undefined;
 
 function changeCurrency(moneda, costoUnitario) {
     if (moneda === "UYU") {
@@ -16,13 +17,13 @@ function showCart(array) {
 
         let costoDol = changeCurrency(purchase.currency, purchase.unitCost);
 
-        //let sub = purchase.unitCost * purchase.cantidad;
         let sub = costoDol * purchase.count;
-        
+
         contenido += `
         <div class="container cart-bucket border rounded">
       <table id="cartTable">
         <tr style="width: 60px;">
+          <td id="td0"><div class="container"><button class="btn" onclick="eliminar(${i})">&times;</button></td>
           <td id="td1"><div class="container"><img src="${purchase.src}" height ="150px"></div></td>
           <td id="td2"><strong><a href="product-info.html">${purchase.name}</a></strong></td>
           <td id="td3">Cantidad: <input type="number" value="${purchase.count}" onchange="calcSubtotal(${costoDol}, ${i})" id="cantidad${i}" min="0"></td>
@@ -34,8 +35,8 @@ function showCart(array) {
     <br>
         `
     };
-    
-    
+
+
 
     document.getElementById("purchaseList").innerHTML = contenido;
     document.getElementById("productCount").innerHTML = cartArray.length;
@@ -43,28 +44,20 @@ function showCart(array) {
     calcTotal();
 }
 
+function eliminar(i) {
+    if (cartArray.length > 1) {
+        cartArray.splice(i, 1);
+        showCart(cartArray);
+    } else {
+        document.getElementById("purchaseList").innerHTML = `<div class="container" style="font-size: 40px; text-align: center;">Nada para mostrar :(</div>`
+    }
+}
+
+
+
 //totales y etc-------------------------
 
-
-
 function calcTotal() {
-    /* antigua forma
-    let total = 0;
-    let subtotalesDol = document.getElementsByClassName("subtotalUSD");
-    let subtotalesUy = document.getElementsByClassName("subtotalUYU");
-    let subtotales = subtotalesUy / 40 + subtotalesDol;
-
-
-    for (let i = 0; i < subtotalesUy.length; i++) {
-
-        total += parseInt(subtotalesUy[i].innerHTML) / 40;
-        total += parseInt(subtotalesDol[i].innerHTML);
-    }
-    document.getElementById("total").innerHTML = total;
-
-    */
-    
-    /* acá voy a probar la nueva forma */
 
     let total = 0;
     let subs = document.getElementsByClassName("subtotal");
@@ -85,11 +78,160 @@ function calcSubtotal(precio, i) {
 
     document.getElementById(`productSubtotal${i}`).innerHTML = subtotal;
     calcTotal();
+
+    calcEnvioPorc()
+
+}
+
+function calcTotalPosta() { //ya anda
+
+    let totalParcial = document.getElementById("total").innerHTML; //el valor de la compra sin envío as displayed
+    let porcentEnvio = document.getElementsByName("envio"); //un array con los radio de tipo de envío
+    let resultado = ""; //lo que quiero que se muestre al final
+
+    for (let i = 0; i < porcentEnvio.length; i++) {
+        if (porcentEnvio[i].checked) {
+            resultado = (porcentEnvio[i].value) * totalParcial;
+        }
+    }
+
+    calcEnvioPorc()
+    document.getElementById('totalPosta').innerHTML = resultado.toFixed(2);
+}
+
+//esto no anda,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+function calcEnvioPorc() {
     
+    let totalAplicar = document.getElementById("total").innerHTML;
+
+    let costoPrem;
+    let costoExp;
+    let costoEst;
+
+    costoPrem = totalAplicar * 0.15;
+    costoExp = totalAplicar * 0.07;
+    costoEst = totalAplicar * 0.05;
+
+    document.getElementById("envPrem").innerHTML = costoPrem.toFixed(2); //esto es para las cifras significativas
+    document.getElementById("envExp").innerHTML = costoExp.toFixed(2);
+    document.getElementById("envEst").innerHTML = costoEst.toFixed(2);
 }
 
 //-----------------------------------
 
+//lo del método de pago
+
+function showpaymentMethod() {
+    let contenido = "";
+    let payments = document.getElementsByName("pago");
+
+    for (var i = 0; i < payments.length; i++) {
+        if (payments[i].checked) {
+            if (payments[i].value === "c") {
+                contenido = `
+                <h5>Titular de la tarjeta</h5>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="text" id="titTarjeta" class="form-control">
+                    </div>
+                    <div class="col"></div>
+                </div><br>
+                <h5>Número de tarjeta</h5>
+                <div class="row">
+                  <input type="text" id="numTarjeta" class="form-control col-5 ml-3" placeholder="" required> – 
+                  <input type="text" id="numTarjeta" class="form-control col-2" placeholder="" required>
+                  <div class="col"></div>
+                </div><br>
+                <div>
+                  <h5>Dirección de la factura</h5>
+                  <input type="text" id="dirTarjeta" class="form-control" required>
+                </div>
+                <br>
+              </div>`;
+
+            } else {
+                contenido = `
+                <h5>Titular de la cuenta</h5>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="text" id="titBanco" class="form-control" required>
+                    </div>
+                    <div class="col"></div>
+                </div><br>
+                <h5>Entidad bancaria</h5>
+                <div class="row">
+                    <div class="col-5">
+                    <select name="bancos" id="bancos" class="form-control" required>
+                        <option>BBVA</option>
+                        <option>Banco República</option>
+                        <option>Santander</option>
+                        <option>HSBC</option>
+                        <option>Itaú</option>
+                    </select>
+                        
+                    </div>
+                    <div class="col"></div>
+                </div><br>
+                <h5>Número de cuenta</h5>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="number" id="numBanco" class="form-control" placeholder="" required>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <br>
+                <h5>Dirección de la factura</h5>
+                <input type="text" id="dirBanco" class="form-control" required>
+                <br>`
+            }
+        }
+    }
+
+    document.getElementById("paymentMethod").innerHTML = contenido;
+}
+
+
+//-----------------------------------
+
+//validar el modal----------------------------------------- no anda obvio. dónde lo llamo?
+
+function validPayment() {
+    let titularTarj = document.getElementById("titTarjeta");
+    let numTarj = document.getElementById("numTarjeta")
+    let dirTarj = document.getElementById("dirTarjeta");
+
+    let titularBan = document.getElementById("titBanco");
+    let numBan = document.getElementById("numBanco")
+    let dirBan = document.getElementById("dirBanco");
+
+    let formaPago = document.getElementsByName("pago");
+    let pagoValido = true;
+
+    for (var i = 0; i < formaPago.length; i++) {
+
+        if ((formaPago[i].checked) && (formaPago[i].value == "c")) {
+            if (titularTarj.value == "" || numTarj.value == "" || dirTarj.value == "") {
+                pagoValido = false;
+            } else {
+                pagoValido = true;
+            }
+        }
+
+        else if ((formaPago[i].checked) && (formaPago[i].value == "t")) {
+            if (titularBan.value == "" || numBan.value == "" || dirBan.value == "") {
+                pagoValido = false;
+            } else {
+                pagoValido = true;
+            }
+        }
+    }
+
+    return pagoValido
+}
+
+
+
+//---------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -99,5 +241,65 @@ document.addEventListener("DOMContentLoaded", function (e) {
         };
 
         showCart(cartArray);
+    });
+
+    let payments = document.getElementsByName("pago");
+    for (var i = 0; i < payments.length; i++) {
+        payments[i].addEventListener("change", function () {
+            showpaymentMethod();
+        });
+    };
+
+
+    //validacion del form de atroden------------------------
+
+    let form = document.getElementById("form-adentro");
+
+    form.addEventListener('submit', function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        //hasta acá lo que ya estaba, ahora agrego lo nuevo
+        if (validPayment()) {
+            document.getElementById("botonModal").classList.remove("btn-dark");
+            document.getElementById("botonModal").classList.remove("btn-danger");
+            document.getElementById("botonModal").classList.add("btn-success");
+
+            document.getElementById("alertModal").innerHTML = `mirá negri lo hiciste bárbaro`;
+
+        } else {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("botonModal").classList.remove("btn-dark");
+            document.getElementById("botonModal").classList.remove("btn-success");
+            document.getElementById("botonModal").classList.add("btn-danger");
+
+            document.getElementById("alertModal").innerHTML = `mirá negri te falta data`;
+        }
+
+
+        if (form.checkValidity()) {
+            $("#modal1").modal("hide")
+
+            paymentType = validPayment();
+        }
+
+
+        form.classList.add('was-validated');
+    });
+
+    //validacion del form de afuera
+    let formulario = document.getElementById("form-afuera");
+
+    formulario.addEventListener('submit', function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+        formulario.classList.add('was-validated');
+
+        if (formulario.checkValidity() && paymentType) {
+            document.getElementById("alertModal").innerHTML = `acá hago la alerta que me ocupe todo el form afuera`;
+        }
     });
 });
