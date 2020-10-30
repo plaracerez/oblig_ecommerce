@@ -41,8 +41,10 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown btn-group" id="toggle" style="display: none;">
-        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div id="info-user" style="display: none;"> <!--el user-->
+        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <div id="info-user" style="display: none;">
+            <!--el user-->
             <a class="py-1 d-none d-md-inline-block" id="user"></a>
           </div>
         </button>
@@ -55,14 +57,26 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+  <div class="text-center p-4">
+    <h2>Mi perfil</h2>
+    <p class="lead">Aquí podrás proporcionar tus datos</p>
+  </div>
+
+  <div id="datosPerfil" class="container" style="background-color: #ebb2de; width: 500px; border-radius: 8px;">
+    <h3 style="text-align: center; padding-top: 20px;">Tus datos</h3>
+    <input type="text" id="perfNombres" name="formPerfil" placeholder="Nombres" class="form-control">
+    <input type="text" id="perfApellidos" name="formPerfil" placeholder="Apellidos" class="form-control">
+    <input type="number" id="perfEdad" name="formPerfil" placeholder="Edad" class="form-control">
+    <input type="email" id="perfEmail" name="formPerfil" placeholder="Correo eléctronico" class="form-control">
+    <input type="text" id="perfTel" name="formPerfil" placeholder="Teléfono" class="form-control">
+    <div id="botonCont">
+      <button type="submit" id="perfBot" onclick="guardar();" class="btn btn-secondary"
+        style="font-size: 16px; width: 400px;">Guardar datos</button>
     </div>
   </div>
+
+
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>

@@ -39,32 +39,25 @@ function showProducts(array) {
 
             if (buscar == undefined || products.name.toLowerCase().indexOf(buscar) != -1) {
                 contenido += `
-                <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-            
-                    <div class="col-3">
-                        <img src="`+ products.imgSrc + `"class="img-thumbnail">
-                    </div>
-            
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h2 class="mb-1">`+ products.name + `</h2>
-                            <p class="text-muted">Vendidos: `+ products.soldCount + `</p>                           
-                        </div>
-                        <div>
-                            <p class="mb-1 text-muted">`+ products.description + `</p>
-                            <p class="mb-1 text-muted">`+ products.currency + " " + products.cost + `</p>
+                <div class="col container my-3">
+                <a href="product-info.html" class="list-group-item-action my-3">
+                    <div class="card px-2 py-3" style="width: 18rem; height: 480px;">
+                        <img class="card-img-top" src="${products.imgSrc}" alt="">
+                        <div class="card-body">
+                        <h2>${products.name}</h2>
+                            <p class="card-text text-muted">${products.description}</p>
+                            <p class="card-text text-muted">${products.currency} ${products.cost}</p>
+                            <p class="card-text text-muted" style="text-align:right;">Vendidos: ${products.soldCount}</p> 
                         </div>
                     </div>
-            
-                </div>
                 </a>
+                </div>
                 
             `
             }
         }
         document.getElementById("listado").innerHTML = contenido;
-
+        //acá empiezo
     }
 }
 

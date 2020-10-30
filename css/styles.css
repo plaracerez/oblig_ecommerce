@@ -209,3 +209,14 @@ td input[type="number"] {
   margin-right: 10px;
 }
 
+#datosPerfil input, #perfBot{
+  margin-bottom: 15px;
+}
+
+#botonCont {
+  text-align: center;
+}
+
+#perfNombres {
+  margin-top: 15px;
+}
