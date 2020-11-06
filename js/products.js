@@ -39,9 +39,9 @@ function showProducts(array) {
 
             if (buscar == undefined || products.name.toLowerCase().indexOf(buscar) != -1) {
                 contenido += `
-                <div class="col container my-3">
+                <div class="col-md-4 my-3">
                 <a href="product-info.html" class="list-group-item-action my-3">
-                    <div class="card px-2 py-3" style="width: 18rem; height: 480px;">
+                    <div class="card px-2 py-3" style=" height: 31rem;">
                         <img class="card-img-top" src="${products.imgSrc}" alt="">
                         <div class="card-body">
                         <h2>${products.name}</h2>
